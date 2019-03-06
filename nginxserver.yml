@@ -3,15 +3,24 @@
   hosts: 192.168.183.155
   become: true
   taks:
-          - name: install nginx web server
-            yum:
-                   - name: nginx
-                     state: present
-   - name: copy index file to webserver
-     template:
+  
+  - name: Insert Epel_release repo
+    yum:
+    - name: epel-release
+      state: present
 
-             src: /root/Desktop/nginx.html
-             dest: /usr/share/nginx/html/index.html
+  - name: install nginx web server
+    yum:
+  
+  - name: nginx
+    state: present
+
+  - name: copy index file to webserver
+    
+    template:
+
+    src: /root/Desktop/nginx.html
+    dest: /usr/share/nginx/html/index.html
 
    - name: Start service
      service:

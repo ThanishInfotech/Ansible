@@ -1,0 +1,22 @@
+---
+- name: Install nginx server
+  hots: 192.168.80.184
+  become: true
+  tasks:
+  - name: Install epel-release repo
+    yum:
+            name: epel-release
+            state: present
+
+  - name: Install Nginx Package
+    yum:
+            name: nginx
+            state: present
+  - name: inset index file in destination:
+          src: index.html
+          dest: /usr/share/nginx/html/index.html
+  - name: Start Service
+    serivce:
+            name: nginx
+            state: statred
+
